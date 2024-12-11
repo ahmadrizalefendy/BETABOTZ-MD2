@@ -2,8 +2,8 @@ const axios = require('axios');
 const { setInterval } = require('timers');
 
 const groupChats = [
-    '120363377104405116@g.us', 
-    '120363180929269883@g.us', 
+    'jid1@g.us', 
+    'jid2@g.us', 
 ];
 
 let location = 'Jakarta'; 
