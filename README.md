@@ -84,4 +84,4 @@ node index.js --pairing
 
 
 ##### All Contributors
-[`All Contri`] (https://contributor.betabotz.eu.org)
+[`All Contri`](https://contributor.betabotz.eu.org)
