@@ -10,7 +10,7 @@ let location = 'Jakarta';
 
 async function getWeatherInfo() {
     try {
-        const url = `https://api.betabotz.eu.org/api/tools/cuaca?query=${encodeURIComponent(location)}&apikey=aquachan`;
+        const url = `https://api.betabotz.eu.org/api/tools/cuaca?query=${encodeURIComponent(location)}&apikey=${lann}`;
         const response = await axios.get(url);
         const res = response.data.result;
 
