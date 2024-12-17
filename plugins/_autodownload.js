@@ -12,26 +12,26 @@ const sleep = (ms) => {
 // DOWNLOADER TIKTOD
 async function downloadTikTok(link, m) {
 	try {
-        if (global.db.data.users[m.sender].limit > 0) {
-		const response = await fetch(`https://api.betabotz.eu.org/api/download/tiktok?url=${link}&apikey=${lann}`);
-                global.db.data.users[m.sender].limit -= 1
-		const data = await response.json();
-		if (!data.result.video) {
-			return;
-		}
-		if (data.result.video.length > 1) {
-               
-			for (let v of data.result.video) {
-				await conn.sendFile(m.chat, v, null, `*Tiktok Downloader*`, m);
-				await sleep(3000)
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/tiktok?url=${link}&apikey=${lann}`);
+			global.db.data.users[m.sender].limit -= 1
+			const data = await response.json();
+			if (!data.result.video) {
+				return;
 			}
-		} else {
-			await conn.sendMessage(m.chat, { video: { url: data.result.video[0] }, caption: `*Tiktok Downloader*` }, { mention: m })
+			if (data.result.video.length > 1) {
+
+				for (let v of data.result.video) {
+					await conn.sendFile(m.chat, v, null, `*Tiktok Downloader*`, m);
+					await sleep(3000)
+				}
+			} else {
+				await conn.sendMessage(m.chat, { video: { url: data.result.video[0] }, caption: `*Tiktok Downloader*` }, { mention: m })
+			}
 		}
-    }
-    else {
-        conn.reply(m.chat, 'limit kamu habis!', m);
-    }
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
 		return;
 	} catch (error) {
 		console.error(error);
@@ -41,25 +41,25 @@ async function downloadTikTok(link, m) {
 // DOWNLOADER DOUYIN
 async function downloadDouyin(link, m) {
 	try {
-        if (global.db.data.users[m.sender].limit > 0) {
-	    const response = await fetch(`https://api.betabotz.eu.org/api/download/douyin?url=${link}&apikey=${lann}`);        
-        const data = await response.json();
-		if (!data.result.video) {
-			return;
-		}
-		if (data.result.video.length > 1) {
-            global.db.data.users[m.sender].limit -= 1
-			for (let v of data.result.video) {
-				await conn.sendFile(m.chat, v, null, `*Douyin Downloader*`, m);
-				await sleep(3000)
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/douyin?url=${link}&apikey=${lann}`);
+			const data = await response.json();
+			if (!data.result.video) {
+				return;
 			}
-		} else {
-			await conn.sendMessage(m.chat, { video: { url: data.result.video[0] }, caption: `*Douyin Downloader*` }, { mention: m })
+			if (data.result.video.length > 1) {
+				global.db.data.users[m.sender].limit -= 1
+				for (let v of data.result.video) {
+					await conn.sendFile(m.chat, v, null, `*Douyin Downloader*`, m);
+					await sleep(3000)
+				}
+			} else {
+				await conn.sendMessage(m.chat, { video: { url: data.result.video[0] }, caption: `*Douyin Downloader*` }, { mention: m })
+			}
 		}
-    }
-    else {
-        conn.reply(m.chat, 'limit kamu habis!', m);
-    } 
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
 		return;
 	} catch (error) {
 		console.error(error);
@@ -77,7 +77,7 @@ async function downloadDouyin(link, m) {
 
 //         let msg = `乂 *T E R A B O X   D O W N L O A D E R*\n\n`
 //         msg += `Found ${response.result.length} file(s):\n\n`
-        
+
 //         for (let file of response.result) {
 //             if (!file.files || !file.files[0]) continue
 //             let fdata = file.files[0]
@@ -85,7 +85,7 @@ async function downloadDouyin(link, m) {
 //             msg += ` ◦ *Size :* ${formatSize(fdata.size)}\n`
 //             msg += ` ◦ *Created :* ${formatDate(file.created)}\n\n`
 //         }
-       
+
 //         await conn.sendMessage(m.chat, {
 //             text: msg,
 //             contextInfo: {
@@ -104,18 +104,18 @@ async function downloadDouyin(link, m) {
 //         for (let i = 0; i < data.result.length; i++) {
 //             const file = data.result[i]
 //             if (!file.files || !file.files[0]) continue
-            
+
 //             let fdata = file.files[0]
 //                 let response = await fetch(fdata.url)
 //                 let buffer = await response.buffer()
-               
+
 //                 let queue = `*Antrian:* ${i + 1}-${total}\n`               
 //                 await conn.sendFile(m.sender, buffer, file.name, queue, m)
-                
+
 //                 if (i === data.result.length - 1) {
 //                     await conn.reply(m.sender, '*DONE*', m)
 //                 }
-                
+
 //                 if (i < data.result.length - 1) {
 //                     await new Promise(resolve => setTimeout(resolve, 5000))
 //                 }
@@ -142,7 +142,7 @@ async function downloadDouyin(link, m) {
 //     })
 // }
 // 		}
-		
+
 //     else {
 //         conn.reply(m.chat, 'limit kamu habis!', m);
 //     } 
@@ -156,20 +156,27 @@ async function downloadDouyin(link, m) {
 //pinterest downloader
 async function downloadpin(link, m) {
 	try {
-        if (global.db.data.users[m.sender].limit > 0) {
-	    const response = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${link}&apikey=${lann}`);        
-		const res = await response.json();
-    let { media_type, image, title } = res.result.data;
-	global.db.data.users[m.sender].limit -= 1
-    if (media_type === 'video/mp4') {
-      await conn.sendMessage(m.chat, { video: { url: image } });
-    } else {
-      conn.sendFile(m.chat, image, 'pindl.jpeg', `*Title:* ${title}\n\n*Mediatype:* ${media_type}\n*Source Url*: ${image}\n`, m);
-    }
-    }
-    else {
-        conn.reply(m.chat, 'limit kamu habis!', m);
-    } 
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${link}&apikey=${lann}`);
+			const res = await response.json();
+
+			let { media_type, image, title, pin_url, video } = res.result.data;
+			global.db.data.users[m.sender].limit -= 1
+			if (media_type === 'video/mp4') {
+				await conn.sendMessage(m.chat, {
+					video: { url: video },
+					caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
+				});
+			} else {
+				await conn.sendMessage(m.chat, {
+					image: { url: image },
+					caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
+				});
+			}
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
 		return;
 	} catch (error) {
 		console.error(error);
@@ -179,28 +186,28 @@ async function downloadpin(link, m) {
 //youtube downloader
 async function downloadyt(link, m) {
 	try {
-        if (global.db.data.users[m.sender].limit > 0) {
-	    const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp4?url=${link}&apikey=${lann}`);        
-		const res = response.data.result;      
-        var { mp4, id, title, source, duration, mp3 } = res;
-        let capt = `YT MP4*\n\n`;
-        capt += `◦ *id* : ${id}\n`;
-        capt += `◦ *tittle* : ${title}\n`;
-        capt += `◦ *source* : ${source}\n`;
-        capt += `◦ *duration* : ${duration}\n`;
-        capt += `\n`;
-		global.db.data.users[m.sender].limit -= 1    
-		await conn.sendMessage(m.chat, { 
-            document: { url: mp3 }, 
-            mimetype: 'audio/mpeg',
-            fileName: `${title}.mp3`,
-        }, { quoted: m });    
-        await conn.sendFile(m.chat, mp4, null, capt, m);
-		
-    }
-    else {
-        conn.reply(m.chat, 'limit kamu habis!', m);
-    } 
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp4?url=${link}&apikey=${lann}`);
+			const res = response.data.result;
+			var { mp4, id, title, source, duration, mp3 } = res;
+			let capt = `YT MP4*\n\n`;
+			capt += `◦ *id* : ${id}\n`;
+			capt += `◦ *tittle* : ${title}\n`;
+			capt += `◦ *source* : ${source}\n`;
+			capt += `◦ *duration* : ${duration}\n`;
+			capt += `\n`;
+			global.db.data.users[m.sender].limit -= 1
+			await conn.sendMessage(m.chat, {
+				document: { url: mp3 },
+				mimetype: 'audio/mpeg',
+				fileName: `${title}.mp3`,
+			}, { quoted: m });
+			await conn.sendFile(m.chat, mp4, null, capt, m);
+
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
 		return;
 	} catch (error) {
 		console.error(error);
@@ -210,34 +217,34 @@ async function downloadyt(link, m) {
 // DOWNLOADER INSTAGRAM 
 async function downloadInstagram(link, m) {
 	try {
-        if (global.db.data.users[m.sender].limit > 0) {
-		const response = await fetch(`https://api.betabotz.eu.org/api/download/igdowloader?url=${link}&apikey=${lann}`);
-        let message = await response.json()   
-        global.db.data.users[m.sender].limit -= 1        
-        for (let i of message.message ) {
-            conn.sendFile(m.chat, i._url, null, `*Instagram Downloader*`, m)
-        }
-    }
-    else {
-        conn.reply(m.chat, 'limit kamu habis!', m);
-    } 
-    } catch(err) {
-        m.reply(`${eror}`)
-    }
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/igdowloader?url=${link}&apikey=${lann}`);
+			let message = await response.json()
+			global.db.data.users[m.sender].limit -= 1
+			for (let i of message.message) {
+				conn.sendFile(m.chat, i._url, null, `*Instagram Downloader*`, m)
+			}
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
+	} catch (err) {
+		m.reply(`${eror}`)
+	}
 }
 
 // DOWNLOADER FACEBOOK 
 async function downloadFacebook(link, m) {
 	try {
-        if (global.db.data.users[m.sender].limit > 0) {
-		const response = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${link}&apikey=${lann}`);
-		var js = await response.json()   
-        global.db.data.users[m.sender].limit -= 1
-        conn.sendFile(m.chat, js.result[1]._url, 'fb.mp4', '', m);
-        }
-        else {
-            conn.reply(m.chat, 'limit kamu habis!', m);
-        } 
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${link}&apikey=${lann}`);
+			var js = await response.json()
+			global.db.data.users[m.sender].limit -= 1
+			conn.sendFile(m.chat, js.result[1]._url, 'fb.mp4', '', m);
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
 	} catch (error) {
 		console.error(error);
 	}
@@ -246,32 +253,35 @@ async function downloadFacebook(link, m) {
 async function _spotify(link, m) {
 	try {
 		if (global.db.data.users[m
-				.sender].limit >
+			.sender].limit >
 			0) {
-				const res = await fetch(`https://api.betabotz.eu.org/api/download/spotify?url=${link}&apikey=${lann}`)
-			    global.db.data.users[m.sender].limit -= 1
-				let jsons = await res.json()
-				const {
-					thumbnail,
-					title,
-					name,
-					duration,
-					url
-				} = jsons.result.data
-				const {
-					id,
-					type
-				} = jsons.result.data.artist
-				await conn.sendMessage(m.chat, { audio: { url: url }, mimetype: 'audio/mpeg', contextInfo: {
-						externalAdReply: {
-							title: title,
-							body: "",
-							thumbnailUrl: thumbnail,
-							sourceUrl: url,
-							mediaType: 1,
-							showAdAttribution: true,
-							renderLargerThumbnail: true
-						}}} , { quoted: m })
+			const res = await fetch(`https://api.betabotz.eu.org/api/download/spotify?url=${link}&apikey=${lann}`)
+			global.db.data.users[m.sender].limit -= 1
+			let jsons = await res.json()
+			const {
+				thumbnail,
+				title,
+				name,
+				duration,
+				url
+			} = jsons.result.data
+			const {
+				id,
+				type
+			} = jsons.result.data.artist
+			await conn.sendMessage(m.chat, {
+				audio: { url: url }, mimetype: 'audio/mpeg', contextInfo: {
+					externalAdReply: {
+						title: title,
+						body: "",
+						thumbnailUrl: thumbnail,
+						sourceUrl: url,
+						mediaType: 1,
+						showAdAttribution: true,
+						renderLargerThumbnail: true
+					}
+				}
+			}, { quoted: m })
 		}
 		else {
 			conn.reply(m.chat,
@@ -287,7 +297,7 @@ async function _spotify(link, m) {
 async function _twitter(link, m) {
 	try {
 		if (global.db.data.users[m
-				.sender].limit >
+			.sender].limit >
 			0) {
 			const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${link}&apikey=${lann}`);
 			global.db.data.users[m.sender].limit -= 1
@@ -321,7 +331,7 @@ async function _twitter(link, m) {
 async function _threads(link, m) {
 	try {
 		if (global.db.data.users[m
-				.sender].limit >
+			.sender].limit >
 			0) {
 			const api = await fetch(`https://api.betabotz.eu.org/api/download/threads?url=${link}&apikey=${lann}`).then(results => results.json());
 			global.db.data.users[m
@@ -360,7 +370,7 @@ async function _threads(link, m) {
 async function _capcut(link, m) {
 	try {
 		if (global.db.data.users[m
-				.sender].limit >
+			.sender].limit >
 			0) {
 			const response = await fetch(`https://api.betabotz.eu.org/api/download/capcut?url=${link}&apikey=${lann}`);
 			global.db.data.users[m.sender].limit -= 1
@@ -391,7 +401,7 @@ async function _capcut(link, m) {
 async function _snackvideo(url, m) {
 	try {
 		if (global.db.data.users[m
-				.sender].limit >
+			.sender].limit >
 			0) {
 		}
 		else {
@@ -407,7 +417,7 @@ async function _snackvideo(url, m) {
 
 /**=========================================**/
 
-handler.before = async function (m, {conn, isPrems}) {
+handler.before = async function (m, { conn, isPrems }) {
 	let chat = global.db.data.chats[m.chat];
 
 	if (!m.text) {
@@ -451,13 +461,13 @@ handler.before = async function (m, {conn, isPrems}) {
 		})
 		await downloadTikTok(text.match(tiktokRegex)[0], m);
 	} else if (text.match(douyinRegex)) {
-	    conn.sendMessage(m.chat, {
+		conn.sendMessage(m.chat, {
 			react: {
 				text: '✅',
 				key: m.key,
 			}
 		})
-	await downloadDouyin(text.match(douyinRegex)[0], m);
+		await downloadDouyin(text.match(douyinRegex)[0], m);
 	} else if (text.match(instagramRegex)) {
 		conn.sendMessage(m.chat, {
 			react: {
