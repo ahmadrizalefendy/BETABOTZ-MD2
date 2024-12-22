@@ -6,7 +6,7 @@ handler.tags = ['main']
 handler.customPrefix = /^(assalamualaikum)$/i 
 handler.command = new RegExp
 handler.limit = false
-handler.group = true
+handler.group = false
 
 
 module.exports = handler
