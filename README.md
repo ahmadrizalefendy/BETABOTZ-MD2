@@ -14,7 +14,7 @@
 - Untuk menggunakan bot ini, kamu diwajibkan mengisi ApiKey terlebih dahulu. Jika tidak mengisinya, bot tidak akan berfungsi dengan baik.
 - Tidak disarankan menginstal bot ini di termux atau panel yang tidak mempunyai kelengkapan express, ffmpeg, imagemagick, webp.
   
-- Menggunakan 60% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader
+- Menggunakan 80% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader dan berbagai fitur lain nya.
 
 
 ## ApiKey Harga
@@ -29,7 +29,7 @@
 | 6  | VVIP         | 15000 Request  | 2 bulan         | 17000     |
 | 7  | SUPREME      | 30000 Request  | 3 bulan         | 32000     |
 
-- Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button order via qris [`Pilih`](https://api.betabotz.eu.org/price)
+- Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button Buy now [`Pilih`](https://api.betabotz.eu.org/price)
 
 **Website Api :**
 - BOTCAHX (Optional)[`Register`](https://api.botcahx.eu.org)
@@ -37,9 +37,8 @@
 - Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
 
 
-## Group Bot
-- Group Bot [`Join`](https://chat.whatsapp.com/G4f1fTpz9zL4EH3FyIcaPR)
-- Group Api [`Join`](https://chat.whatsapp.com/DJLpJEZ5QFO5nzAoGcJO71)
+## BetaBotz Md || Information & Discussion
+- Group Bot [`Join`](https://chat.whatsapp.com/H8XPKS8vmHm2spliGlKY41)
 ## Support
 
 <a href="https://api.betabotz.eu.org/donasi" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
