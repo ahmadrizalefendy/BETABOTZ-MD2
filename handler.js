@@ -415,6 +415,7 @@ module.exports = {
                     if (!("breaths" in user)) user.breaths = ""
                     if (!("magic" in user)) user.magic = ""
                     if (!("demon" in user)) user.demon = ""
+                    if (!("job" in user)) user.job = "Not Have"  
                     if (!isNumber(user.darahiblis)) user.darahiblis = 0
                     if (!isNumber(user.lastyoutuber)) user.lastyoutuber = 0
                     if (!isNumber(user.subscribers)) user.subscribers = 0
@@ -441,8 +442,12 @@ module.exports = {
                     if (!isNumber(user.lasttambang)) user.lasttambang = 0
                     if (!isNumber(user.lastngepet)) user.lastngepet = 0
                     if (!isNumber(user.lasttaxi)) user.lasttaxi = 0
-                    if (!isNumber(user.taxi)) user.taxi = 0  
+                    if (!isNumber(user.taxi)) user.taxi = 0
+                    if (!isNumber(user.lastjobkerja)) user.lastjobkerja = 0
+                    if (!isNumber(user.lastjobchange)) user.lastjobchange = 0  
                 } else global.db.data.users[m.sender] = {
+                    lastjobkerja: 0,
+                    lastjobchange: 0,
                     taxi: 0,
                     lasttaxi: 0,
                     lastyoutuber: 0,
