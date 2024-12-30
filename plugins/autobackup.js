@@ -38,7 +38,7 @@ const scheduleSendDatabase = (conn, groupJid) => {
     });
 };
 
-const groupJid = '120363216901617825@g.us';
+const groupJid = '120363216901617825@g.us'; //di ganti dengan Jid grub kamu! di dapat dari (=> m)
 
 if (global.conn) {
     scheduleSendDatabase(global.conn, groupJid);
