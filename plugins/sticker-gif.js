@@ -1,57 +1,32 @@
-const fs = require('fs');
-const { exec } = require('child_process');
+const fetch = require('node-fetch');
+const uploader = require('../lib/uploadFile');
 
-const handler = async (m, { conn }) => {
-    if (m.quoted && /sticker/.test(m.quoted.mtype) && !m.quoted.isAnimated) {
-        let img = await m.quoted.download();
-        await conn.sendMessage(m.chat, { image: img, jpegThumbnail: img }, { quoted: m });
-    } else if (m.quoted && /sticker/.test(m.quoted.mtype) && m.quoted.isAnimated) {
-        let img = await m.quoted.download();
-        let out = await webpToVideo(img);
-        await conn.sendMessage(m.chat, { video: out, gifPlayback: /gif/i.test(m.text), gifAttribution: Math.random() < 0.5 ? 1 : 0 }, { quoted: m });
-    } else {
-        throw 'Reply a sticker!';
-    }
-};
+let handler = async (m, { conn, usedPrefix, command }) => {
+	let q = m.quoted ? m.quoted : m
+	let mime = (q.msg || q).mimetype || q.mediaType || ''
+	if (/webp/.test(mime)) {
+		let buffer = await q.download()
+		await m.reply(wait)
+		try {
+			let media = await uploader(buffer)
+			let json;
+			if (command === 'togif') {		
+				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`)).json();
+			} else if (command === 'toimg') {
+				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
+			}
+			await conn.sendFile(m.chat, json.result, null, "*DONE*", m)
+		} catch (err) {
+			throw err
+		}
+	} else {
+		throw `Reply sticker with command ${usedPrefix + command}`
+	}
+}
 
-handler.help = ['togif', 'tovideo'];
-handler.tags = ['tools'];
-handler.command = /^(to(gif|video|vid))$/i;
+handler.help = ['toimg', 'togif']
+handler.tags = ['tools']
+handler.command = /^(toimg|togif)$/i
 handler.limit = true;
-handler.register = true;
 
 module.exports = handler;
-
-function webpToVideo(bufferImage) {
-    return new Promise((resolve, reject) => {
-        try {
-            const pathFile = "./tmp/" + Math.floor(Math.random() * 1000000 + 1) + ".webp";
-            fs.writeFileSync(pathFile, bufferImage);
-
-            exec(`convert ${pathFile} ${pathFile}.gif`, (error, stdout, stderr) => {
-                if (error) {
-                    reject('Failed to convert webp to gif: ' + stderr);
-                    fs.unlinkSync(pathFile);
-                    return;
-                }
-
-                exec(`ffmpeg -i ${pathFile}.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ${pathFile}.mp4`, (error, stdout, stderr) => {
-                    if (error || !fs.existsSync(pathFile + ".gif") || !fs.existsSync(pathFile + ".mp4")) {
-                        reject('Failed to convert gif to video: ' + stderr);
-                        fs.unlinkSync(pathFile);
-                        return;
-                    }
-
-                    const videoBuffer = fs.readFileSync(pathFile + ".mp4");
-                    fs.unlinkSync(pathFile);
-                    fs.unlinkSync(pathFile + ".gif");
-                    fs.unlinkSync(pathFile + ".mp4");
-
-                    resolve(videoBuffer);
-                });
-            });
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
