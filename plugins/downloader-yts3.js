@@ -27,7 +27,7 @@ handler.before = async (m, { conn }) => {
         delete conn.ytsvideo[m.sender];
         const selectedTrack = anu[inputNumber - 1];
         try {
-            if (anu.seconds >= 3600) {
+            if (selectedTrack.seconds >= 3600) {
             return conn.reply(m.chat, 'Video is longer than 1 hour!', m);
             } else {
             let videoUrl = await youtube(selectedTrack.url);
@@ -41,14 +41,8 @@ handler.before = async (m, { conn }) => {
             captions += `∘ Description : ${selectedTrack.description}\n`;
 
             conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key }})
-            await conn.sendMessage(m.chat, {
-            video: {
-            url: `${videoLink}`
-            },
-            caption: captions,
-            mimetype: 'video/mp3', 
-            },{ quoted: m})
-            }
+            await conn.sendMessage(m.chat, { video: { url: videoLink }, caption: captions }, { quoted: m });
+          }
         } catch (error) {
             console.error('Error downloading and sending audio:', error);
             await conn.reply(m.chat, 'error saat menngambil data, coba lagi dengan nomor yang lain tau hubungi owner!', m);
