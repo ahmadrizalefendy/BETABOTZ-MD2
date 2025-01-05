@@ -22,12 +22,12 @@
 | No | Plan/Role    | Limit          | Expired         | Harga |
 |----|--------------|----------------|-----------------|-------|
 | 1  | Free         | 30 Request/day| -               | Gratis|
-| 2  | Cheap1       | 3000 Request   | 1 bulan         | 5000     |
-| 3  | Cheap2       | 4000 Request   | 1 bulan         | 6000     |
-| 4  | PREMIUM      | 5000 Request   | 1 bulan         | 7000     |
-| 5  | VIP          | 10000 Request  | 2 bulan         | 12000     |
-| 6  | VVIP         | 15000 Request  | 2 bulan         | 17000     |
-| 7  | SUPREME      | 30000 Request  | 3 bulan         | 32000     |
+| 2  | Cheap1       | 3000 Request   | 1 bulan         | 3000     |
+| 3  | Cheap2       | 4000 Request   | 1 bulan         | 4000     |
+| 4  | PREMIUM      | 5000 Request   | 1 bulan         | 5000     |
+| 5  | VIP          | 10000 Request  | 2 bulan         | 10000     |
+| 6  | VVIP         | 15000 Request  | 2 bulan         | 15000     |
+| 7  | SUPREME      | 30000 Request  | 3 bulan         | 30000     |
 
 - Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button Buy now [`Pilih`](https://api.betabotz.eu.org/price)
 
@@ -35,6 +35,9 @@
 - BOTCAHX (Optional)[`Register`](https://api.botcahx.eu.org)
 - Lann (Wajib) [`Register`](https://api.betabotz.eu.org)
 - Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
+- Setelah itu install bot kalian dan ketik pada bot .getip
+- Ambil ip dan pergi ke [`Profile Api`](https://api.betabotz.eu.org) untuk melakukan whitelist
+- Cari opsi settings -> management ip dan paste ip kalian disana supaya bot bisa menggunakan api
 
 
 ## BetaBotz Md || Information & Discussion
