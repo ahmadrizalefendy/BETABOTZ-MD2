@@ -240,5 +240,6 @@ handler.tags = ['rpg'];
 handler.command = /^(up(tool)?)$/i;
 handler.fail = null;
 handler.group = true;
+handler.rpg = true
 
 module.exports = handler;

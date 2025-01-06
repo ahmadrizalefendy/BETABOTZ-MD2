@@ -161,6 +161,7 @@ handler.tags = ['rpg']
 handler.command = /^(attacktitan)$/i
 handler.limit = true
 handler.group = true
+handler.rpg = true
 handler.fail = null
 
 module.exports = handler

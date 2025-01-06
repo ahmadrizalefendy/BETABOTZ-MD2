@@ -20,7 +20,7 @@ handler.help = ['heal *jumlah*']
 handler.tags = ['rpg']
 handler.command = /^(heal|use)$/i
 handler.limit = true
-
+handler.rpg = true
 module.exports = handler
 
 function isNumber(number) {

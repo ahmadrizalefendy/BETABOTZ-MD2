@@ -179,5 +179,6 @@ handler.tags = ['rpg'];
 handler.command = /^(craft|crafting|chant|blacksmith)/i;
 handler.register = true;
 handler.group = true;
+handler.rpg = true
 
 module.exports = handler;

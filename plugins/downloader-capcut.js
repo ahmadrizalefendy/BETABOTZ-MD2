@@ -19,14 +19,12 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
         const res = await response.json();
         const { 
-            video_ori, 
-            title, 
-            digunakan,
-            cover,
-            author_profile
+            video,
+            title,
+            owner
         } = res.result;
 
-        await conn.sendFile(m.chat, video_ori, 'capcut.mp4', `Title: ${title}\nDigunakan: ${digunakan}\nThumbnail: ${cover}\nProfile: ${author_profile}`, m);
+        await conn.sendFile(m.chat, video, 'capcut.mp4', `Title: ${title}\n\nProfile: ${owner}`, m);
 
     } catch (e) {
         console.log(e);
@@ -37,5 +35,5 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = handler.command = ['capcut','cc','capcutdl','ccdl'];
 handler.tags = ['downloader'];
 handler.limit = true;
-handler.group = false;
+handler.group = true;
 module.exports = handler;

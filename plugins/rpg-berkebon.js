@@ -53,6 +53,7 @@ handler.admin = false
 handler.botAdmin = false
 
 handler.fail = null
+handler.rpg = true
 handler.limit = true
 handler.exp = 0
 handler.money = 0

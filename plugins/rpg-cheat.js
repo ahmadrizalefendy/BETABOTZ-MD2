@@ -17,6 +17,7 @@ let handler = async (m, { conn }) => {
 handler.command = /^(cheat)$/i
 handler.owner = false
 handler.premium = false
+handler.rpg = true
 
 
 module.exports = handler;

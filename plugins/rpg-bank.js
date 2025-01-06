@@ -43,5 +43,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ['bank']
 handler.tags = ['rpg']
 handler.command = /^bank$/
+handler.rpg = true
 
 module.exports = handler

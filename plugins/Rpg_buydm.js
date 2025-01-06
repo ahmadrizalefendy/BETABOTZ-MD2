@@ -17,5 +17,5 @@ handler.help = ['buydm', 'buyalldm']
 handler.tags = ['econ']
 handler.command = ['buydm', 'buyalldm'] 
 handler.group = true
-
+handler.rpg = true
 module.exports = handler;

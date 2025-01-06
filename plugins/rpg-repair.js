@@ -168,5 +168,5 @@ handler.help = ['repair', 'perbaiki']
 handler.tags = ['rpg']
 handler.group = true
 handler.command = /^(repair|perbaiki)/i
-
+handler.rpg = true
 module.exports = handler

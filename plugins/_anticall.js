@@ -1,8 +1,11 @@
-async function before(m) {
+let handler = m => m
+
+handler.before = async function (m) {
   this.ev.on('call', async (call) => {
       if (call[0].status == 'offer') {
-        await this.sendMessage(call[0].from, {
-          text: "Kamu Di banned + block + warn + kick oleh bot karena telah melanggar aturan bot\n\n*📮Dilarang menelepon Bot!",
+       
+        await this.sessage(call[0].from, {
+          text: "",
           quoted: call[0]
         });
         await this.rejectCall(call[0].id, call[0].from);
@@ -10,6 +13,7 @@ async function before(m) {
       }
   });
 }
-module.exports = {
-  before
-};
+
+module.exports = handler
+
+//admin mohon maaf atas kesalahan kode sebelum nya

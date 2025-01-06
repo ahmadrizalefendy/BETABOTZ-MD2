@@ -20,7 +20,7 @@ handler.help = ['monthly']
 handler.tags = ['rpgabsen']
 handler.command = /^(monthly)$/i
 handler.limit = true
-
+handler.rpg = true
 handler.fail = null
 
 module.exports = handler

@@ -75,7 +75,7 @@ handler.tags = ['rpg']
 handler.command = /^(ngepet|ngefet)$/i
 handler.premium = true
 handler.group = true
-
+handler.rpg = true
 handler.fail = null
 
 module.exports = handler
